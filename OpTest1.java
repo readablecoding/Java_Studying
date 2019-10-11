@@ -1,0 +1,92 @@
+class OpTest1 
+{
+	public static void main(String[] args) 
+	{
+		int a, b, c;
+		a = 10;
+		b = 3;
+		c = a + b;       // a+b를 한 값을 c에 넣음
+		c = a + b * 2;   //*가 +보다 우선순위가 높음
+		c = (a + b) * 2; // 괄호 안의 덧셈이 먼저 이뤄짐
+		c = a % b;       //a를 b로 나눈 나머지를 c에 넣음
+		System.out.println("c = " + c); 
+
+		a = c = 0;
+		System.out.println("a = " + a + ", c = " +c);
+		++a;       // a에 1을 더함
+		System.out.println("a = " + a + ", c = " +c);
+		a++;       // a에 1을 더함
+		System.out. println("a = " + a + ", c = " +c);
+		c = ++a;   // a에 1을 더하고 그 값을 c에 넣음
+		System.out.println("a = " + a + ", c = " +c);
+		c = a++;   // a의 값을 먼저 c에 넣고 그 다음에 a의 값을 1 증가시킴
+		System.out.println("a = " + a + ", c = " +c);
+
+		a = 1;
+		b = 2;
+
+        boolean res;
+		res = a > b;
+		System.out.println("a = " + a + ", b = " + b + ", res = " + res);
+		res = a * 2 > 10;
+		System.out.println("a = " + a + ", b = " + b + ", res = " + res);
+		res = ((a * 2) > 10);
+		System.out.println("a = " + a + ", b = " + b + ", res = " + res);
+
+		// a가 양의 정수인가?
+		res = a > 0;
+		System.out.println("a = " + a + ", b = " + b + ", res = " + res);
+		// a가 짝수인가?
+		res = a % 2 == 0;
+		
+	    // a가 홀수인가? -> 2가지 방법이 존재함. 나머지가 1이거나, 나머지가 0이 아니거나
+		res = a % 2 == 1;
+		
+		res = a % 2 != 0;
+		
+		// a가 3의 배수인가?
+		res = a % 3 == 0;
+		
+		// a와 b 모두 양의 정수인가?  -> a가 0보다 크고, b가 0보다 크다
+	    res = a > 0 && b > 0;
+		
+		// a 또는 b 중에 짝수가 있는가? 
+		res = a % 2 == 0 || b % 2 == 0;
+		
+		//a가 1 ~ 5 범위내에 있는가? -> and를 써서 해결, ||를 쓰면 논리적 구멍
+		res = a >= 1 && a <= 5;
+
+		//a가 1 ~ 5 범위 밖에 있는가?
+	    res = !(a >= 1 && a <= 5);  // !붙이기
+		res = a < 1 || a < 5;       // || 붙이기
+
+		a = 3;
+		b = 1;
+		c = a & b;    // 모두 1이면 1이고 하나라도 1이 아니면 0
+		c = a | b;    // 하나라도 1이면 1이고 아니면 0
+		c = a ^ b;    // 둘 다 같으면 0, 하나라도 다르면 1
+		c = ~ a;      // 1은 0으로, 0은 1로
+		c = ~ b;      // 1은 0으로, 0은 1로
+		System.out.println(c);
+
+		a = -1;
+		b = 1;
+		res = ++a > 0 & ++b > 0; 
+	    System.out.println("a = " + a + ", b = " + b + ", res = " + res);
+
+		a = a + 1;
+		a += 1;
+		++a;
+
+		c = a > b ? a : (b + 1);
+		//c = (a > b ? a : b) + 1; 는 나온 값에 1을 더하는 것
+		//c = a;
+		//c = b;
+		System.out.println(c);
+
+		a = 1, b = 1;
+
+		
+
+	}
+}
