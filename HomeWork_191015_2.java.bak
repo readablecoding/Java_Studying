@@ -1,0 +1,58 @@
+import java.util.Scanner; 
+class HomeWork_191015_2
+{
+	public static void main(String[] args) 
+	{   Scanner in = new Scanner(System.in);  
+	    
+	    int n1, n2, op;
+		double value;
+		
+
+		System.out.print("정수 1 : " ); 
+		n1 = in.nextInt();      
+		System.out.print("정수 2 : " );
+		n2 = in.nextInt();
+		System.out.println("연산자 (1: +, 2: -, 3: *, 4: /) " );
+		System.out.print("연산할 숫자를 입력하세요 : ");
+		op = in.nextInt();
+
+		if(op < 1 || op > 4)
+		{
+			System.out.println("1부터 4중 하나를 선택하세요");
+			return;
+		}
+		
+		switch (op)
+		{
+			case 1 :
+				value = n1 + n2;
+				System.out.println(n1 + " + " + n2 + " = " + value);
+				break;
+			case 2 :
+				value = n1 - n2;
+				System.out.println(n1 + " - " + n2 + " = " + value);
+				break;
+			case 3 :
+				value = n1 * n2;
+				System.out.println(n1 + " * " + n2 + " = " + value);
+				break;
+			case 4 :
+				if(n2 == 0)
+				{
+					System.out.println("0으로 나눌 수 없습니다");
+					return;
+				}
+				else
+				{
+				(int)value = n1 / n2;
+				System.out.println(n1 + " / " + n2 + " = " + (int)value);
+				//printf 활용
+				//System.out.printf("%d / %d = %.0f\n", n1, n2, value);  
+				//Math.round 활용
+				//System.out.println(n1 + " / " + n2 + " = " + Math.round(value)); 		
+				break;
+				}
+		}
+
+	}
+}
