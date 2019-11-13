@@ -1,29 +1,52 @@
-package global.sesoc.java1.oop191113;
-//게시판의 글 정보 1개를 담을 VO class
+package test.vo;
+
+/**
+ * 게시글 정보를 담을 VO 클래스
+ */
 public class Board 
 {
-	private int num; 			//글 번호 (1,2...)
-	private String id;			//작성자 ID(abc)
-	private String title; 		//제목
-	private String contents;		//글 내용
+	/**
+	 * 글 번호
+	 */
+	private int num;
+	/**
+	 * 작성자 아이디
+	 */
+	private String id;
+	/**
+	 * 글 제목
+	 */
+	private String title;
+	/**
+	 * 글 내용
+	 */
+	private String contents;
 	
-	//기본 생성자 -> 오른쪽 클릭-source-constructors from superclass
+	/**
+	 * 기본 생성자
+	 */
 	public Board() 
 	{
-		
-	}
+	} 
 
-	//4개의 초기값을 전달받는 생성자 -> 오른쪽 클릭-source-constructors using fields
-	public Board(int num, String id, String title, String content) 
+	/** 
+	 * 4개의 초기값을 전달받는 생성자
+	 * @param num 글번호
+	 * @param id 작성자 아이디
+	 * @param title 글 제목
+	 * @param contents 글 내용
+	 */
+	public Board(int num, String id, String title, String contents) 
 	{
-		super();
 		this.num = num;
 		this.id = id;
 		this.title = title;
 		this.contents = contents;
 	}
 
-	//get,set 메소드들
+	/**
+	 * Setter, Getter 메소드들
+	 */
 	public int getNum() 
 	{
 		return num;
@@ -54,40 +77,22 @@ public class Board
 		this.title = title;
 	}
 
-	public String getContent() 
+	public String getContents() 
 	{
 		return contents;
 	}
 
-	public void setContent(String contents) 
+	public void setContents(String contents) 
 	{
 		this.contents = contents;
 	}
 
-	//toString
+	/**
+	 * Object의 toString() 메소드 오버라이딩
+	 */
 	@Override
 	public String toString() 
 	{
-		return "Board [num=" + num + ", id=" + id + ", title=" + title + ", contents=" + contents + "]";
+		return "글번호:" + num + ", 작성자:" + id + ", 제목:" + title + ", 내용" + contents;
 	}
-	
-	//equals
-	@Override
-	public boolean equals(Object obj)
-	{
-		if(!(obj instanceof Board))
-		{
-			return false;
-		}
-		Board b = (Board) obj;
-		if(this.num == b.num && this.id.equals(b.id) && this.title.equals(b.title) & this.contents.equals(b.contents))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}// equals()
-	
-}//class Board()
+}//class Board
