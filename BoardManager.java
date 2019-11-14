@@ -1,8 +1,8 @@
-package test.service;
+package board.service;
 
 import java.util.ArrayList;
 
-import test.vo.Board;
+import board.vo.Board;
 
 /**
  * 하위 클래스에서 구현할 추상 메소드들을 정의한 인터페이스
@@ -10,7 +10,7 @@ import test.vo.Board;
 public interface BoardManager 
 {
 	/**
-	 * 리스트에 새 글정보를 추가
+	 * 리스트에 새 글정보를 추가 
 	 * @param board 추가할 글 정보
 	 * @return 저장 성공 여부
 	 */
@@ -35,4 +35,4 @@ public interface BoardManager
 	 * @return 삭제 성공 여부
 	 */
 	public boolean remove(int num);
-}//interface BoardManager
+}

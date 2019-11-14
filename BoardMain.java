@@ -1,4 +1,4 @@
-package test.ui;
+package board.ui;
 
 /**
  * 게시판 프로그램의 시작 부분
@@ -9,7 +9,7 @@ public class BoardMain
 
 	public static void main(String[] args) 
 	{
-		BoardUI boardUI = new BoardUI();
-	}//main()
+		BoardUI boarUI = new BoardUI(); //  BoardUI 객체를 생성하며 시작
+	}
 
-}//class BoardMain 
+}

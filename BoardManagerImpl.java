@@ -1,18 +1,18 @@
-package test.service;
+package board.service;
 
 import java.util.ArrayList;
 
-import test.vo.Board;
+import board.vo.Board;
 
 public class BoardManagerImpl implements BoardManager 
 {
-	ArrayList<Board> boardlist;		//글 정보를 저장할 리스트
+	ArrayList<Board> boardlist;		//글 정보를 저장할 리스트 -> 선언
 	
 	public BoardManagerImpl() 
 	{
 		//최초 실행될 때 리스트 생성
-		boardlist = new ArrayList<Board>();
-	}//BoardManagerImpl()
+		boardlist = new ArrayList<Board>(); // 생성
+	}
 	
 	@Override
 	public boolean add(Board board) 
@@ -20,18 +20,18 @@ public class BoardManagerImpl implements BoardManager
 		//같은 번호의 글이 있는지 확인
 		if (getBoard(board.getNum()) != null) 
 		{
-			return false;
+			return false; // ui로 돌아감
 		}
 		//없으면 저장
 		boardlist.add(board);
 		return true;
-	}//add()
+	}
 
 	@Override
 	public ArrayList<Board> listAll() 
 	{
 		return boardlist;
-	}//listAll()
+	}	
 
 	@Override
 	public Board getBoard(int num) 
@@ -46,7 +46,7 @@ public class BoardManagerImpl implements BoardManager
 			}
 		}
 		return null;
-	}//getBoard()
+	}
 
 	@Override
 	public boolean remove(int num) 
@@ -62,6 +62,6 @@ public class BoardManagerImpl implements BoardManager
 			}
 		}
 		return false;
-	}//remove()
+	}
 
-}//class BoardManagerImpl
+}

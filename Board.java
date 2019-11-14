@@ -1,14 +1,14 @@
-package test.vo;
+package board.vo;
 
 /**
- * 게시글 정보를 담을 VO 클래스
+ * 게시글 정보를 담을 VO 클래스 -> VO는 value Object 값 객체
  */
 public class Board 
 {
 	/**
 	 * 글 번호
 	 */
-	private int num;
+	private int num; // 멤버변수
 	/**
 	 * 작성자 아이디
 	 */
@@ -25,9 +25,9 @@ public class Board
 	/**
 	 * 기본 생성자
 	 */
-	public Board() 
+	public Board() //생성자
 	{
-	} 
+	}
 
 	/** 
 	 * 4개의 초기값을 전달받는 생성자
@@ -36,7 +36,7 @@ public class Board
 	 * @param title 글 제목
 	 * @param contents 글 내용
 	 */
-	public Board(int num, String id, String title, String contents) 
+	public Board(int num, String id, String title, String contents) //생성자
 	{
 		this.num = num;
 		this.id = id;
@@ -95,4 +95,4 @@ public class Board
 	{
 		return "글번호:" + num + ", 작성자:" + id + ", 제목:" + title + ", 내용" + contents;
 	}
-}//class Board
+}
