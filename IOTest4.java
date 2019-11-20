@@ -15,7 +15,7 @@ public class IOTest4 {
 		
 		if(!file.isFile())
 		{
-			System.out.println(file.getName() + " 파일이 있습니다.");
+			System.out.println(file.getName() + " 파일이 없습니다.");
 			return;
 		}
 			
