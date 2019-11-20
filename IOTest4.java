@@ -33,5 +33,4 @@ public class IOTest4 {
 		}
 		
 	}//main()
-
 }//class IOTest4
