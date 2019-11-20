@@ -8,7 +8,6 @@ import java.io.File;
 
 public class IOTest6 
 {
-
 	public static void main(String[] args) 
 	{
 		/*product.txt
@@ -21,7 +20,7 @@ public class IOTest6
 		BufferedReader inFile = null;
 		String fileName = "C:\\Users\\user\\Downloads\\product.txt";
 		String line;
-		int amount;
+		int amount;  
 		
 		//텍스트 파일 열기
 		 try
@@ -36,7 +35,7 @@ public class IOTest6
 		 //한 줄 단위로 읽어서 String타입으로 리턴
 		 try
 		 {
-			 while((line = inFile.readLine()) != null)
+			 while((line = inFile.readLine()) != null) //들어오는 것이 null이면 while문 종료
 			 {
 				//읽은 한 줄을 빈칸 기준으로 분리
 				String ar[] = line.split(" ");
