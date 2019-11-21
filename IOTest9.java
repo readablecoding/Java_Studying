@@ -9,7 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.ClassNotFoundException;
 
-public class IOTest9 {
+public class IOTest9 
+{
 
 	public static void main(String[] args) 
 	{
@@ -25,7 +26,7 @@ public class IOTest9 {
 			out.writeObject(new Integer(11));
 			out.writeObject(new Integer(22));
 			out.writeObject(new Integer(99));
-			out.close();	//파일 완성
+			out.close();	//파일 완성했으니 스트림 끝내기
 		} 
 		catch (IOException e) 
 		{	
@@ -49,15 +50,15 @@ public class IOTest9 {
 		{
 			while(true)
 			{
-				i = (Integer) in.readObject();
-				System.out.println(i);
+				i = (Integer) in.readObject(); //더이상 읽을 것이 없으면 while문 탈출해 catch로 이동
+				System.out.println(i); 
 			}
 		}
-		catch(ClassNotFoundException e)
+		catch(ClassNotFoundException e) //자연스럽게 끝나도록 안에 비워둠
 		{
 			
 		}
-		catch(EOFException e)
+		catch(EOFException e) //자연스럽게 끝나도록 안에 비워둠
 		{
 			
 		}
@@ -66,16 +67,6 @@ public class IOTest9 {
 			e.printStackTrace();
 		}
 		
-		
-			
-	
-		/*
-		33
-		11
-		22
-		99
-		 */
-		
 		try 
 		{
 			in.close();
@@ -83,10 +74,7 @@ public class IOTest9 {
 		catch (IOException e) 
 		{
 			e.printStackTrace();
-		}
+		}	
 		
-		
-
-	}
-
-}
+	}//main()
+}//class IOTest9

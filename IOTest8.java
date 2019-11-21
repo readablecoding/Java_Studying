@@ -1,5 +1,6 @@
 package global.sesoc.java1.io;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +17,6 @@ public class IOTest8
 		Integer b;
 		ArrayList<String> c;
 		
-		
 		/*
 		try 
 		{
@@ -32,7 +32,7 @@ public class IOTest8
 		}
 		
 		
-		try 
+		try 	
 		{
 			a = (StringBuffer) in.readObject(); //readObject()의 반환타입이 Object라서 형변환 필요
 			System.out.println(a);	//abcde
@@ -53,9 +53,18 @@ public class IOTest8
 		
 		//모두 읽어들인 후에 다시 읽기 시도
 		 
-		
-		in.readObject();
-		-> EOFException 뜨면 그만하게 한다.
+		try
+		{
+			while(true)
+			{
+				i = (Integer) in.readObject(); //더이상 읽을 것이 없으면 while문 탈출해 catch로 이동
+				System.out.println(i); 
+			}
+		}
+		catch(EOFException e) //자연스럽게 끝나도록 안에 비워둠
+		{
+			
+		}
 		
 		*/
 		

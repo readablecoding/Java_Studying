@@ -23,7 +23,7 @@ public class TextEditor4 {
 		//임시파일 생성
 		try 
 		{
-			tempfile = new File("./temp.tmp");
+			tempfile = new File("./temp.tmp"); //현재폴더의 temp.tmp파일
 			out = new BufferedWriter(new FileWriter(tempfile));
 		}
 		catch (IOException e) 
@@ -40,7 +40,10 @@ public class TextEditor4 {
 			{
 				System.out.print(++num + ": ");
 				text = scan.nextLine();
-				if (text.equals("")) break;
+				if (text.equals(""))
+				{
+					break;
+				}
 				out.write(text);
 				out.newLine();
 			}
@@ -69,7 +72,10 @@ public class TextEditor4 {
 			System.out.print("파일명 : ");
 			filename = scan.nextLine();
 			file = new File(filename + ".txt");
-			if (!file.isFile()) break;
+			if (!file.isFile()) 
+			{
+				break;
+			}
 			System.out.print("이미 존재하는 파일명입니다. 덮어쓸까요? (y/n)");
 			yn = scan.nextLine();
 			if (yn.equalsIgnoreCase("y"))
@@ -79,7 +85,7 @@ public class TextEditor4 {
 		}
 		
 		//임시파일의 이름을 입력받은 내용으로 변경
-		tempfile.renameTo(file);
+		tempfile.renameTo(file);	//tempfile에 담긴 파일이름을 file의 이름으로 변경
 		System.out.println(file.getName() + " 파일이 저장되었습니다.");
 		
 	}
