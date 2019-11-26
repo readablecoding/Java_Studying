@@ -1,98 +1,75 @@
 package board.vo;
 
-/**
- * 게시글 정보를 담을 VO 클래스 -> VO는 value Object 값 객체
- */
-public class Board 
+import java.io.Serializable;
+
+public class Board implements Serializable //implements Serializable를 통해 객체 직렬화
 {
-	/**
-	 * 글 번호
-	 */
-	private int num; // 멤버변수
-	/**
-	 * 작성자 아이디
-	 */
-	private String id;
-	/**
-	 * 글 제목
-	 */
-	private String title;
-	/**
-	 * 글 내용
-	 */
-	private String contents;
+	//변수
+	private int num;			//글 번호
+	private String name;		//작성자 이름
+	private String title;		//글 제목
+	private String contents;	//글 내용
 	
-	/**
-	 * 기본 생성자
-	 */
-	public Board() //생성자
+	//생성자
+	public Board() 
 	{
+		super();
 	}
 
-	/** 
-	 * 4개의 초기값을 전달받는 생성자
-	 * @param num 글번호
-	 * @param id 작성자 아이디
-	 * @param title 글 제목
-	 * @param contents 글 내용
-	 */
-	public Board(int num, String id, String title, String contents) //생성자
+	public Board(int num, String name, String title, String contents) 
 	{
+		super();
 		this.num = num;
-		this.id = id;
+		this.name = name;
 		this.title = title;
 		this.contents = contents;
 	}
 
-	/**
-	 * Setter, Getter 메소드들
-	 */
-	public int getNum() 
-	{
+	//getters, setters
+	public int getNum() {
 		return num;
 	}
 
-	public void setNum(int num) 
-	{
+	public void setNum(int num) {
 		this.num = num;
 	}
 
-	public String getId() 
-	{
-		return id;
+	public String getName() {
+		return name;
 	}
 
-	public void setId(String id) 
-	{
-		this.id = id;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getTitle() 
-	{
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) 
-	{
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public String getContents() 
-	{
+	public String getContents() {
 		return contents;
 	}
 
-	public void setContents(String contents) 
-	{
+	public void setContents(String contents) {
 		this.contents = contents;
 	}
 
-	/**
-	 * Object의 toString() 메소드 오버라이딩
-	 */
+	//toString()
 	@Override
 	public String toString() 
 	{
-		return "글번호:" + num + ", 작성자:" + id + ", 제목:" + title + ", 내용" + contents;
+		return "Board [num=" + num + ", name=" + name + ", title=" + title + ", contents=" + contents + "]";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

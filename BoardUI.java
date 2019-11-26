@@ -1,160 +1,200 @@
 package board.ui;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import board.service.BoardManager;
 import board.service.BoardManagerImpl;
 import board.vo.Board;
 
-/**
- * 사용자 화면 
- */
 public class BoardUI 
 {
+	//멤버변수에 자주 쓸 것을 만들어 놓기
 	Scanner keyin = new Scanner(System.in);
-	BoardManager manager = new BoardManagerImpl(); //BoardManager클래스의 BoardManagerImpl 객체를 만듦
+	BoardManagerImpl manager = new BoardManagerImpl(); //BoardManagerImpl() 생성자 실행
 	
-	/**
-	 * 생성자
-	 */
-	public BoardUI() 
+	//생성자
+	public BoardUI()
 	{
-		//BoardUI객체가 생성될 때 무한반복.
-		while (true) 
+		//BoardMain 클래스에서 생성하면 반복문이 실행
+		//아래 반복문이 종료되면 main()메소드로 리턴되며 프로그램 종료
+		while(true)
 		{
-			int m = menuPrint(); // menuPrint() 호출함
-			switch (m) 
+			int m = mainMenu();
+			switch(m)
 			{
-				case 1: this.write(); break;
-				case 2: this.list(); break;
-				case 3: this.read(); break;
-				case 4: this.delete(); break;
-				case 0: 
-					System.out.println("* 프로그램을 종료합니다.");
-					return; //  BoardUI() 생성자를 끝내고 BoardMain()으로 리턴됨. 가보니 아무것도 없어 프로그램 종료
+			case 1:
+				write(); //현재 클래스의 메소드인 write()로 전달되는 값은 없다. 자기 할 일 하고 돌아온다.
+				break;		
+			case 2:
+				list();
+				break;
+			case 3:
+				read();
+				break;		
+			case 4:
+				delete();
+				break;		
+			case 0:
+				end();
+				return; //프로그램을 끝내기 위함
 			}
 		}
 	}
 	
-	/**
-	 * 메뉴 출력, 번호 입력받기
-	 * @return 입력받은 번호
-	 */
-	public int menuPrint() 
+	//메인 메뉴 출력하고 번호 입력받아 리턴
+	public int mainMenu()
 	{
-		System.out.println("[ 게시판 ]");
+		System.out.println("[게시판]");
 		System.out.println("1. 글쓰기");
 		System.out.println("2. 전체 글보기");
-		System.out.println("3. 글읽기");
-		System.out.println("4. 글삭제");
+		System.out.println("3. 글번호로 읽기");
+		System.out.println("4. 삭제");
 		System.out.println("0. 종료");
-		System.out.print("* 선택 > ");
 		
-		int num = 0;
-		
-		while (true) // 제대로 입력받는지 확인
-		{
-			num = keyin.nextInt();
-			if (num < 0 || num > 4) 
-			{
-				System.out.print("* 다시 입력하세요 > ");
-				continue; // while (true)로 이동시킴, 다시 입력하게끔
+		int n = 0;
+		while(true)
+		{	
+			try
+			{	System.out.print("번호선택 > ");		
+				n = keyin.nextInt();
+				if(n < 0 || n > 4) 
+				{
+					continue;
+				}
 			}
-			break;
+			catch(InputMismatchException e)
+			{
+				keyin.nextLine();
+				continue;
+			}
+			break;	
 		}
-		return num; // int m = menuPrint()로  다시 돌아감
+		return n;	
 	}
 	
-	/**
-	 * 글쓰기
-	 */
-	public void write() 
+
+	//글쓰기
+	public void write()
 	{
-		System.out.println("[ 글쓰기 ]");
+		System.out.println("[글쓰기]");
 		int num;
-		String id, title, contents;
+		String name, title, contents;
 		
-		System.out.print("번호: ");
-		num = keyin.nextInt();
-		keyin.nextLine();		//Enter 제거 -> Scanner.nextInt 메소드는 사용자 입력의 가장 마지막 개행문자(엔터, newline)를 제거하지 않음
-		System.out.print("ID: ");
-		id = keyin.nextLine();
-		System.out.print("제목: ");
-		title = keyin.nextLine();
-		System.out.print("내용: ");
-		contents = keyin.nextLine();
+		//4가지를 입력받아 add 메소드로 Board 객체를 전달
+		try
+		{
+			System.out.print("번호: ");
+			num = keyin.nextInt();
+			keyin.nextLine();
+			System.out.print("이름: ");
+			name = keyin.nextLine();
+			System.out.print("제목: ");
+			title = keyin.nextLine();
+			System.out.print("내용: ");
+			contents = keyin.nextLine();
+		}
+		catch(Exception e)
+		{
+			System.out.println("입력이 잘못되었습니다.");
+			keyin.nextLine();
+			return;
+		}
 		
-		Board b = new Board(num, id, title, contents); // Board 객체에 정보 담음
-		boolean check = manager.add(b);				// manager 객체에 저장할 객체 전달, 저장되면 true
-		if (check) 
+		Board b = new Board(num, name, title, contents);
+		boolean check = manager.add(b);
+		if(check)
 		{
 			System.out.println("저장되었습니다.");
 		}
-		else 
+		else
 		{
-			System.out.println("저장 실패했습니다.");
+			System.out.println("저장 실패하였습니다.");
 		}
+	
 	}
 	
-	/**
-	 * 전체 글보기
-	 */
-	public void list() 
+	//글 전체보기
+	public void list()
 	{
-		System.out.println("[ 전체 글목록 ]");
+		System.out.println("[전체 글 보기]");
 		ArrayList<Board> list = manager.listAll();
-		
-		for (Board b : list) 
+		for(Board b : list)
 		{
-			System.out.println(b);
+			System.out.print("[" + b.getNum() + "] ");
+			System.out.print("작성자: " + b.getName() +", ");
+			System.out.print("제목: " + b.getTitle() + ", ");
+			System.out.println("내용: " + b.getContents());
 		}
-		System.out.println("총 " + list.size() + "건의 글이 있습니다.");
+		System.out.println("총 " + list.size() +"건의 글이 있습니다.");
 	}
 	
-	/**
-	 * 글읽기
-	 */
-	public void read() 
+	//글 읽기
+	public void read()
 	{
-		System.out.println("[ 글읽기 ]");
+		System.out.println("[글 번호로 읽기]");
 		int n;
 		Board b;
-		
-		System.out.print("글번호 입력: ");
-		n = keyin.nextInt();
-		
-		b = manager.getBoard(n);
-		if (b != null) 
+		while(true)
 		{
-			System.out.println("번호 : " + b.getNum());
-			System.out.println("작성자 : " + b.getId());
-			System.out.println("제목 : " + b.getTitle());
-			System.out.println("내용 : " + b.getContents());
+			try
+			{
+				System.out.print("찾을 번호: ");
+				n = keyin.nextInt();
+			}
+			catch(Exception e)
+			{
+				keyin.nextLine();
+				continue;				
+			}
+			break;
 		}
-		else {
-			System.out.println("해당 번호의 글이 없습니다.");
+		b = manager.getBoard(n);
+		if(b == null)
+		{
+			System.out.println("글이 존재하지 않습니다.");	
+		}
+		else
+		{
+			System.out.println(b);
+		}	
+	}
+	
+	//글 삭제
+	public void delete()
+	{
+		System.out.println("[삭제]");
+		int n;
+		while(true)
+		{
+			try
+			{
+				System.out.print("삭제할 번호: ");
+				n = keyin.nextInt();
+			}	
+			catch(Exception e)
+			{	
+				keyin.nextLine();
+				continue;
+			}
+			break;
+		}
+		if(manager.remove(n))
+		{
+			System.out.println("삭제 되었습니다.");
+		}
+		else
+		{
+			System.out.println("글이 존재하지 않습니다.");
 		}
 	}
 	
-	/**
-	 * 글삭제
-	 */
-	public void delete() 
+	//파일 저장 후 종료
+	public void end()
 	{
-		System.out.println("[ 글삭제 ]");
-		int n;
-		
-		System.out.print("글번호 입력: ");
-		n = keyin.nextInt(); // 숫자 받기
-		
-		if (manager.remove(n)) // manager에게 지워달라고 번호를 넘겨줌
-		{
-			System.out.println("삭제되었습니다.");
-		}
-		else 
-		{
-			System.out.println("해당 번호의 글이 없습니다.");
-		}
+		manager.saveFile();
+		System.out.println("프로그램을 종료합니다.");
 	}
-}
+	
+	
+}//class BoardUI

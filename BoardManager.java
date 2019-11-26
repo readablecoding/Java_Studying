@@ -10,7 +10,7 @@ import board.vo.Board;
 public interface BoardManager 
 {
 	/**
-	 * 리스트에 새 글정보를 추가 
+	 * 리스트에 새 글정보를 추가
 	 * @param board 추가할 글 정보
 	 * @return 저장 성공 여부
 	 */
